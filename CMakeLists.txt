@@ -28,7 +28,7 @@ add_executable(game
         src/Map.cpp
         src/Player.cpp
         src/TextureManager.cpp
-        main.cpp include/Slime.h src/Slime.cpp)
+        main.cpp include/Slime.h src/Slime.cpp include/Snorlax.h src/Snorlax.cpp)
 
 target_link_libraries(${PROJECT_NAME} -lmingw32 -lSDL2main -lSDL2 -lSDL2_image)
 
