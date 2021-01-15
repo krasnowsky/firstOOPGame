@@ -159,6 +159,15 @@ void Player::Update(Entities &slime, Entities &snorlax)
             std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << snorlax.getName() << " with " << snorlax.getHP() << " HP" << std::endl;
     }
 
+    if(!slime.checkAlive() && !snorlax.checkAlive())
+    {
+        objTexture = TextureManager::LoadTexture("../assets/teemoVICTORY.png");
+        destRect.w = srcRect.w * 20;
+        destRect.h = srcRect.h * 20;
+        destRect.x = 64;
+        destRect.y = 0;
+    }
+
     if(this -> getHP() <= 0)
     {
         isAlive = false;

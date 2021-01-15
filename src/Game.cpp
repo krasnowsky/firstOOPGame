@@ -1,5 +1,6 @@
 #include <Slime.h>
 #include <Snorlax.h>
+#include <Heal.h>
 #include "Game.h"
 #include "Player.h"
 #include "Map.h"
@@ -10,6 +11,7 @@
 Player* player;
 Slime* slime;
 Snorlax* snorlax;
+Heal* potion;
 Map* Map1;
 
 SDL_Renderer* Game::renderer = nullptr;
@@ -70,6 +72,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     snorlax -> setStats(15, 20, 400);
     snorlax ->getStats();
 
+    potion = new Heal("../assets/heal.png", 0, 300);
+
     Map1 = new Map();
 }
 
@@ -98,6 +102,7 @@ void Game::update()
     slime -> Update(*player);
     snorlax -> Update(*player);
     player -> Update(*slime, *snorlax);
+    potion -> UpdateItem(*player);
 }
 
 void Game::render()
@@ -107,6 +112,7 @@ void Game::render()
     slime -> Render();
     snorlax -> Render();
     player -> Render();
+    potion -> RenderItem();
     SDL_RenderPresent(renderer);
 }
 
