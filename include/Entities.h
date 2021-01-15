@@ -33,7 +33,11 @@ class Entities
         virtual int getPositionY();
 
         virtual float getAD();
+        virtual float setAD(float value);
+
         virtual float getDEF();
+        virtual float setDEF(float value);
+
         virtual float getHP();
 
         virtual void setStats(float ad, float def, float hp);

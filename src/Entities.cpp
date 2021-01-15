@@ -99,3 +99,11 @@ bool Entities::checkAlive()
 {
     return isAlive;
 }
+
+float Entities::setAD(float value) {
+    this -> AD = value;
+}
+
+float Entities::setDEF(float value) {
+    this -> DEF = value;
+}

@@ -76,43 +76,6 @@ void Player::Update(Entities &slime, Entities &snorlax)
 
     }
 
-    /*if(Game::event.type == SDL_KEYUP)
-    {
-        switch(Game::event.key.keysym.sym)
-        {
-        case SDLK_w:
-            {
-                this -> movementY(0);
-                break;
-            }
-
-        case SDLK_a:
-            {
-                this -> movementX(0);
-                break;
-            }
-
-        case SDLK_s:
-            {
-                this -> movementY(0);
-                break;
-            }
-
-        case SDLK_d:
-            {
-                this -> movementX(0);
-
-                break;
-            }
-
-        default:
-            {
-                break;
-            }
-        }
-
-    }*/
-
     srcRect.h = 32;
     srcRect.w = 32;
     srcRect.x = 0;
@@ -123,7 +86,6 @@ void Player::Update(Entities &slime, Entities &snorlax)
     destRect.w = srcRect.w * 2;
     destRect.h = srcRect.h * 2;
 
-   // std::cout << "X: " << xPos << "Y: " << yPos << std::endl;
     int playerPosX = this -> getPositionX();
     int playerPosY = this -> getPositionY();
 
@@ -158,6 +120,13 @@ void Player::Update(Entities &slime, Entities &snorlax)
             snorlax.setHP(enemyHP-dmgADDealt);
             std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << snorlax.getName() << " with " << snorlax.getHP() << " HP" << std::endl;
     }
+
+    /*std::cout << "x: " << playerPosX << " y: " << playerPosY << std::endl;
+
+    if(playerPosX > 80 && playerPosX < 100 && playerPosY > 190 && playerPosY < 210 )
+    {
+        objTexture = TextureManager::LoadTexture("../assets/teemoSWORD.png");
+    }*/
 
     if(!slime.checkAlive() && !snorlax.checkAlive())
     {
