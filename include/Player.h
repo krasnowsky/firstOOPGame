@@ -13,7 +13,7 @@ class Player : public Entities
     public:
         Player(const char* fileName, int x, int y);
         virtual ~Player();
-        void Update();
+        void Update(Entities &slime, Entities &snorlax);
         void Render();
         bool checkAlive();
 };

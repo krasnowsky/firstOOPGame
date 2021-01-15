@@ -1,4 +1,5 @@
 #include <Slime.h>
+#include <Snorlax.h>
 #include "Game.h"
 #include "Player.h"
 #include "Map.h"
@@ -8,6 +9,7 @@
 
 Player* player;
 Slime* slime;
+Snorlax* snorlax;
 Map* Map1;
 
 SDL_Renderer* Game::renderer = nullptr;
@@ -63,6 +65,11 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     slime -> setStats(20, 5, 200);
     slime -> getStats();
 
+    snorlax = new Snorlax("../assets/snorlax.png", 660, 300);
+    snorlax -> setName("Sleepy Bear");
+    snorlax -> setStats(15, 20, 400);
+    snorlax ->getStats();
+
     Map1 = new Map();
 }
 
@@ -89,7 +96,8 @@ void Game::handleEvents()
 void Game::update()
 {
     slime -> Update(*player);
-    player -> Update();
+    snorlax -> Update(*player);
+    player -> Update(*slime, *snorlax);
 }
 
 void Game::render()
@@ -97,6 +105,7 @@ void Game::render()
     SDL_RenderClear(renderer);
     Map1 -> DrawMap();
     slime -> Render();
+    snorlax -> Render();
     player -> Render();
     SDL_RenderPresent(renderer);
 }

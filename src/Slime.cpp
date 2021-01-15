@@ -36,10 +36,18 @@ void Slime::Update(Entities &enemy) {
     destRect.w = srcRect.w * 4;
     destRect.h = srcRect.h * 4;
 
+    if(this -> getHP() <= 0)
+    {
+        isAlive = false;
+        objTexture = TextureManager::LoadTexture("../assets/angryslimeDEAD.png");
+        destRect.y = 0;
+
+    }
+
     int slimePos = this -> getPositionX();
     int playerPos = enemy.getPositionX();
 
-    if(slimePos - playerPos < 17)
+    if(abs(slimePos - playerPos) < 17 && isAlive)
     {
         isAttacked = true;
         if (enemy.checkAlive())
@@ -52,10 +60,7 @@ void Slime::Update(Entities &enemy) {
             else  dmgADDealt = dmgAD - enemy.getDEF();
 
             enemy.setHP(enemyHP-dmgADDealt);
-            std::cout << this -> name << " dealt: " << std::endl;
-            std::cout << "AD Damage: " << dmgADDealt << std::endl;
-            std::cout << "HP: " << enemy.getHP()<< std::endl;
-            std::cout << "to: " << enemy.getName() << std::endl << std::endl;
+            std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << enemy.getName() << " with " << enemy.getHP() << " HP" << std::endl;
         }
     }
 }
