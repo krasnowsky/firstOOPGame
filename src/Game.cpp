@@ -6,17 +6,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "Map.h"
-
-//SDL_Texture* playerTex;
-//SDL_Rect srcR, destR;
-
-Player* player;
-Slime* slime;
-Snorlax* snorlax;
-Heal* potion;
-Sword* sword;
-Shield* shield;
-Map* Map1;
+#include <memory>
 
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
@@ -61,33 +51,30 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         isRunning = false;
     }
 
-    player = new Player("../assets/teemo.png", 0, 0);
+    player = std::make_shared<Player>("../assets/teemo.png", 0, 0);
     player -> setName("Super Hero");
     player -> setStats(120, 10, 2000);
     player -> getStats();
 
-    slime = new Slime("../assets/angryslime.png", 289,-50);
+    slime = std::make_shared<Slime>("../assets/angryslime.png", 289,-50);
     slime -> setName("Maria Slime");
     slime -> setStats(20, 5, 200);
     slime -> getStats();
 
-    snorlax = new Snorlax("../assets/snorlax.png", 660, 300);
+    snorlax = std::make_shared<Snorlax>("../assets/snorlax.png", 660, 300);
     snorlax -> setName("Sleepy Bear");
     snorlax -> setStats(15, 20, 400);
-    snorlax ->getStats();
+    snorlax -> getStats();
 
-    potion = new Heal("../assets/heal.png", 0, 300);
+    potion = std::make_shared<Heal>("../assets/heal.png", 0, 300);
+    sword = std::make_shared<Sword>("../assets/sword.png", 120, 250);
+    shield = std::make_shared<Shield>("../assets/shield.png", 110, 150);
 
-    sword = new Sword("../assets/sword.png", 120, 250);
-
-    shield = new Shield("../assets/shield.png", 110, 150);
-
-    Map1 = new Map();
+    Map1 = std::make_shared<Map>();
 }
 
 void Game::handleEvents()
 {
-
     SDL_PollEvent(&event);
 
     switch(event.type)
@@ -107,9 +94,9 @@ void Game::handleEvents()
 
 void Game::update()
 {
+    player -> Update(*slime, *snorlax);
     slime -> Update(*player);
     snorlax -> Update(*player);
-    player -> Update(*slime, *snorlax);
     potion -> UpdateItem(*player);
     sword -> UpdateItem(*player);
     shield -> UpdateItem(*player);
@@ -121,10 +108,10 @@ void Game::render()
     Map1 -> DrawMap();
     slime -> Render();
     snorlax -> Render();
-    player -> Render();
     potion -> RenderItem();
     sword -> RenderItem();
     shield -> RenderItem();
+    player -> Render();
     SDL_RenderPresent(renderer);
 }
 

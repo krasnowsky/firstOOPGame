@@ -6,25 +6,20 @@
 Entities::Entities(const char* fileName, int x, int y)
 {
     objTexture = TextureManager::LoadTexture(fileName);
-
     xPos = x;
     yPos = y;
-
 }
 
 Entities::~Entities()
 {
-    //dtor
 }
 
 void Entities::Update()
 {
-
 }
 
 void Entities::Render()
 {
-     //SDL_RenderCopy(Game::renderer, objTexture, NULL, &destRect);
 }
 
 int Entities::getPositionX()
@@ -37,24 +32,24 @@ int Entities::getPositionY()
     return this -> yPos;
 }
 
-void Entities::setStats(float ad, float def, float hp)
+void Entities::setStats(int ad, int def, int hp)
 {
     this -> AD = ad;
     this -> DEF = def;
     this -> HP = hp;
 }
 
-float Entities::getAD()
+int Entities::getAD()
 {
     return this -> AD;
 }
 
-float Entities::getDEF()
+int Entities::getDEF()
 {
     return this -> DEF;
 }
 
-float Entities::getHP()
+int Entities::getHP()
 {
     return this -> HP;
 }
@@ -69,16 +64,6 @@ std::string Entities::getName()
     return this -> name;
 }
 
-void Entities::movementX(int right)
-{
-    this -> xPos += right;
-}
-
-void Entities::movementY(int up)
-{
-    this -> yPos += up;
-}
-
 void Entities::getStats()
 {
     std::cout << "--------------------------------------" << std::endl;
@@ -90,7 +75,7 @@ void Entities::getStats()
     std::cout << "--------------------------------------" << std::endl << std::endl;
 }
 
-void Entities::setHP(float hp)
+void Entities::setHP(int hp)
 {
     this -> HP = hp;
 }
@@ -100,10 +85,10 @@ bool Entities::checkAlive()
     return isAlive;
 }
 
-float Entities::setAD(float value) {
+void Entities::setAD(int value) {
     this -> AD = value;
 }
 
-float Entities::setDEF(float value) {
+void Entities::setDEF(int value) {
     this -> DEF = value;
 }

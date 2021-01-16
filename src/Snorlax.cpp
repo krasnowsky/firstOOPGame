@@ -51,9 +51,9 @@ void Snorlax::Update(Entities &enemy) {
         isAttacked = true;
         if (enemy.checkAlive())
         {
-            float dmgAD = this -> getAD();
-            float enemyHP = enemy.getHP();
-            float dmgADDealt;
+            int dmgAD = this -> getAD();
+            int enemyHP = enemy.getHP();
+            int dmgADDealt;
 
             if(dmgAD == 0 || dmgAD <= enemy.getDEF()) dmgADDealt = 0;
             else  dmgADDealt = dmgAD - enemy.getDEF();
@@ -65,6 +65,6 @@ void Snorlax::Update(Entities &enemy) {
 }
 
 void Snorlax::Render() {
-    SDL_RenderCopy(Game::renderer, objTexture, NULL, &destRect);
+    SDL_RenderCopy(Game::renderer, objTexture, nullptr, &destRect);
 }
 

@@ -39,5 +39,5 @@ void Sword::UpdateItem(Player &player) {
 }
 
 void Sword::RenderItem() {
-    SDL_RenderCopy(Game::renderer, objTexture, NULL, &destRect);
+    SDL_RenderCopy(Game::renderer, objTexture, nullptr, &destRect);
 }

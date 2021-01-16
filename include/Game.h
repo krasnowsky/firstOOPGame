@@ -4,6 +4,15 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
+#include <memory>
+
+class Player;
+class Slime;
+class Snorlax;
+class Heal;
+class Sword;
+class Shield;
+class Map;
 
 class Game
 {
@@ -18,13 +27,22 @@ class Game
         void render();
         void clean();
 
-        bool running(){ return isRunning; }
+        bool running() const{ return isRunning; }
 
         static SDL_Renderer* renderer;
         static SDL_Event event;
     private:
-        bool isRunning;
-        SDL_Window *window;
+        std::shared_ptr<Player> player;
+        std::shared_ptr<Slime> slime;
+        std::shared_ptr<Snorlax> snorlax;
+        std::shared_ptr<Heal> potion;
+        std::shared_ptr<Sword> sword;
+        std::shared_ptr<Shield> shield;
+        std::shared_ptr<Map> Map1;
+
+        bool isRunning{};
+
+        SDL_Window *window{};
 };
 
 #endif // GAME_H

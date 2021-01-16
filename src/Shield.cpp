@@ -35,6 +35,6 @@ void Shield::UpdateItem(Player &player) {
 }
 
 void Shield::RenderItem() {
-    SDL_RenderCopy(Game::renderer, objTexture, NULL, &destRect);
+    SDL_RenderCopy(Game::renderer, objTexture, nullptr, &destRect);
 }
 

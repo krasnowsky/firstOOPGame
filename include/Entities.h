@@ -15,9 +15,9 @@ class Entities
         int xPos;
         int yPos;
 
-        float HP;
-        float AD;
-        float DEF;
+        int HP;
+        int AD;
+        int DEF;
 
         bool isAlive = true;
 
@@ -32,21 +32,18 @@ class Entities
         virtual int getPositionX();
         virtual int getPositionY();
 
-        virtual float getAD();
-        virtual float setAD(float value);
+        virtual int getAD();
+        virtual void setAD(int value);
 
-        virtual float getDEF();
-        virtual float setDEF(float value);
+        virtual int getDEF();
+        virtual void setDEF(int value);
 
-        virtual float getHP();
+        virtual int getHP();
+        virtual void setHP(int hp);
 
-        virtual void setStats(float ad, float def, float hp);
+        virtual void setStats(int ad, int def, int hp);
         virtual void getStats();
-        virtual void setHP(float hp);
 
-
-        virtual void movementX(int right);
-        virtual void movementY(int up);
 
         virtual void setName(std::string nick);
         virtual std::string getName();

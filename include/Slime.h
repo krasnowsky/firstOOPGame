@@ -12,7 +12,7 @@ private:
 public:
     Slime(const char* fileName, int x, int y);
     void Update(Entities &enemy);
-    void Render();
+    void Render() override;
 
 
 

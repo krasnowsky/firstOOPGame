@@ -1,21 +1,17 @@
-#include <accctrl.h>
 #include "Game.h"
 #include "TextureManager.h"
 #include "Entities.h"
 #include "Player.h"
 
-
 Player::Player(const char* fileName, int x, int y) : Entities(fileName, x, y)
 {
     objTexture = TextureManager::LoadTexture(fileName);
-    //std::cout << "New player joined the World." << std::endl;
     xPos = x;
     yPos = y;
 }
 
 Player::~Player()
 {
-    //std::cout << this -> name << " left the World." << std::endl;
 }
 
 void Player::Update(Entities &slime, Entities &snorlax)
@@ -26,7 +22,6 @@ void Player::Update(Entities &slime, Entities &snorlax)
         {
         case SDLK_w:
             {
-                //this -> movementY(-1);
                 if(yPos > 0)
                 {
                     this -> yPos -= speed;
@@ -37,7 +32,6 @@ void Player::Update(Entities &slime, Entities &snorlax)
 
         case SDLK_a:
             {
-                //this -> movementX(-1);
                 if(xPos > 0)
                 {
                     this -> xPos -= speed;
@@ -48,7 +42,6 @@ void Player::Update(Entities &slime, Entities &snorlax)
 
         case SDLK_s:
             {
-                //this -> movementY(1);
                 if(yPos < 574)
                 {
                     this -> yPos += speed;
@@ -59,12 +52,10 @@ void Player::Update(Entities &slime, Entities &snorlax)
 
         case SDLK_d:
             {
-                //this -> movementX(1);
                 if(xPos < 740)
                 {
                     this -> xPos += speed;
                 }
-
                 break;
             }
 
@@ -73,7 +64,6 @@ void Player::Update(Entities &slime, Entities &snorlax)
                 break;
             }
         }
-
     }
 
     srcRect.h = 32;
@@ -90,16 +80,15 @@ void Player::Update(Entities &slime, Entities &snorlax)
     int playerPosY = this -> getPositionY();
 
     int slimePosX = slime.getPositionX();
-    int slimePosY = slime.getPositionY();
 
     int snorlaxPosX = snorlax.getPositionX();
     int snorlaxPosY= snorlax.getPositionY();
 
     if(abs(playerPosX - slimePosX) < 17 && slime.checkAlive())
     {
-            float dmgAD = this -> getAD();
-            float enemyHP = slime.getHP();
-            float dmgADDealt;
+            int dmgAD = this -> getAD();
+            int enemyHP = slime.getHP();
+            int dmgADDealt;
 
             if(dmgAD == 0 || dmgAD <= slime.getDEF()) dmgADDealt = 0;
             else  dmgADDealt = dmgAD - slime.getDEF();
@@ -110,9 +99,9 @@ void Player::Update(Entities &slime, Entities &snorlax)
 
     if(abs(playerPosX - snorlaxPosX) < 50 && abs(playerPosY - snorlaxPosY) < 50 && snorlax.checkAlive())
     {
-            float dmgAD = this -> getAD();
-            float enemyHP = snorlax.getHP();
-            float dmgADDealt;
+            int dmgAD = this -> getAD();
+            int enemyHP = snorlax.getHP();
+            int dmgADDealt;
 
             if(dmgAD == 0 || dmgAD <= snorlax.getDEF()) dmgADDealt = 0;
             else  dmgADDealt = dmgAD - snorlax.getDEF();
@@ -121,12 +110,7 @@ void Player::Update(Entities &slime, Entities &snorlax)
             std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << snorlax.getName() << " with " << snorlax.getHP() << " HP" << std::endl;
     }
 
-    /*std::cout << "x: " << playerPosX << " y: " << playerPosY << std::endl;
-
-    if(playerPosX > 80 && playerPosX < 100 && playerPosY > 190 && playerPosY < 210 )
-    {
-        objTexture = TextureManager::LoadTexture("../assets/teemoSWORD.png");
-    }*/
+    //std::cout << "x: " << playerPosX << " y: " << playerPosY << std::endl;
 
     if(!slime.checkAlive() && !snorlax.checkAlive())
     {
@@ -150,7 +134,7 @@ void Player::Update(Entities &slime, Entities &snorlax)
 
 void Player::Render()
 {
-    SDL_RenderCopy(Game::renderer, objTexture, NULL, &destRect);
+    SDL_RenderCopy(Game::renderer, objTexture, nullptr, &destRect);
 }
 
 bool Player::checkAlive()

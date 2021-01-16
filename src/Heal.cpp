@@ -25,9 +25,6 @@ void Heal::UpdateItem(Player &player) {
         int ItemPosX = this->PositionX;
         int ItemPosY = this->PositionY;
 
-        //std::cout << "Player x: " << PlayerPosX << " y: " << PlayerPosY << std::endl;
-        //std::cout << "Heal x: " << ItemPosX << " y: " << ItemPosY << std::endl;
-
         if (abs(PlayerPosX - ItemPosX) < 30 && abs(PlayerPosY - ItemPosY) < 30) {
             isTaken = true;
             objTexture = TextureManager::LoadTexture("blank");
@@ -38,6 +35,6 @@ void Heal::UpdateItem(Player &player) {
 }
 
 void Heal::RenderItem() {
-    SDL_RenderCopy(Game::renderer, objTexture, NULL, &destRect);
+    SDL_RenderCopy(Game::renderer, objTexture, nullptr, &destRect);
 }
 

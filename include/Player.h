@@ -12,10 +12,10 @@ class Player : public Entities
 
     public:
         Player(const char* fileName, int x, int y);
-        virtual ~Player();
+        ~Player() override;
         void Update(Entities &slime, Entities &snorlax);
-        void Render();
-        bool checkAlive();
+        void Render() override;
+        bool checkAlive() override;
 };
 
 #endif // PLAYER_H

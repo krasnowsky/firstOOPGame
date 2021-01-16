@@ -11,7 +11,7 @@ private:
 public:
     Sword(const char* fileName, int x, int y);
     void UpdateItem(Player &player);
-    void RenderItem();
+    void RenderItem() override;
 };
 
 
