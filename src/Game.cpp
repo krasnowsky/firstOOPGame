@@ -7,6 +7,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "Map.h"
+#include "Dragon.h"
 #include <memory>
 
 
@@ -59,19 +60,26 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     player -> setStats(25, 0, 2000);
     player -> getStats();
 
-    slime = std::make_shared<Slime>("../assets/angryslime.png", 289,-50);
+    slime = std::make_shared<Slime>("../assets/angryslime.png", 289,0);
     slime -> setName("Maria Slime");
     slime -> setStats(10, 5, 400);
     slime -> getStats();
 
-    snorlax = std::make_shared<Snorlax>("../assets/snorlax.png", 660, 300);
+    snorlax = std::make_shared<Snorlax>("../assets/snorlax.png", 850, 550);
     snorlax -> setName("Sleepy Bear");
     snorlax -> setStats(15, 20, 700);
     snorlax -> getStats();
 
+    dragon = std::make_shared<Dragon>("../assets/dragon.png", 1130, 50);
+    dragon -> setName("Last Fire Dragon");
+    dragon -> setStats(15, 20, 700);
+    dragon -> getStats();
+
+
     entities.push_back(player);
     entities.push_back(slime);
     entities.push_back(snorlax);
+    entities.push_back(dragon);
 
     potion = std::make_shared<Heal>("../assets/heal.png", 0, 300);
     sword = std::make_shared<Sword>("../assets/sword.png", 120, 250);
@@ -105,9 +113,10 @@ void Game::handleEvents()
 
 void Game::update()
 {
-    player -> Update(*slime, *snorlax, *map);
+    player -> Update(*slime, *snorlax, *map, *dragon);
     slime -> Update(*player);
     snorlax -> Update(*player);
+    dragon -> Update(*player);
     potion -> UpdateItem(*player);
     sword -> UpdateItem(*player);
     shield -> UpdateItem(*player);
@@ -119,6 +128,7 @@ void Game::render()
     map -> DrawMap();
     slime -> Render();
     snorlax -> Render();
+    dragon -> Render();
     potion -> RenderItem();
     sword -> RenderItem();
     shield -> RenderItem();

@@ -7,7 +7,7 @@ class Snorlax : public Entity
 {
 private:
     int speed = 2;
-    int topBorder = 100, bottomBorder = 400;
+    int topBorder = 480, bottomBorder = 620;
     bool isUp = true, isAttacked = false;
 public:
     Snorlax(const char* fileName, int x, int y);

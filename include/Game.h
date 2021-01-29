@@ -12,6 +12,7 @@ class Item;
 class Player;
 class Slime;
 class Snorlax;
+class Dragon;
 class Heal;
 class Sword;
 class Shield;
@@ -38,6 +39,7 @@ class Game
         std::shared_ptr<Player> player;
         std::shared_ptr<Slime> slime;
         std::shared_ptr<Snorlax> snorlax;
+        std::shared_ptr<Dragon> dragon;
         std::shared_ptr<Heal> potion;
         std::shared_ptr<Sword> sword;
         std::shared_ptr<Shield> shield;

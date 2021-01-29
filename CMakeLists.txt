@@ -23,6 +23,8 @@ add_executable(game
         include/Map.h
         include/Player.h
         include/TextureManager.h
+        include/Dragon.h
+        src/Dragon.cpp
         src/Entity.cpp
         src/Game.cpp
         src/Map.cpp
