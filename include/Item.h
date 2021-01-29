@@ -3,7 +3,7 @@
 
 #include "Player.h"
 
-class Items
+class Item
 {
 protected:
     int PositionX;
@@ -14,7 +14,7 @@ protected:
     SDL_Texture* objTexture;
     SDL_Rect srcRect, destRect;
 public:
-    Items(const char* fileName, int x, int y);
+    Item(const char* fileName, int x, int y);
     virtual void UpdateItem();
     virtual void RenderItem();
 };

@@ -1,9 +1,9 @@
 #ifndef GAME_SLIME_H
 #define GAME_SLIME_H
 
-#include "Entities.h"
+#include "Entity.h"
 
-class Slime : public Entities
+class Slime : public Entity
 {
 private:
     int speed = 2;
@@ -11,7 +11,7 @@ private:
     bool isRight = true, isAttacked = false;
 public:
     Slime(const char* fileName, int x, int y);
-    void Update(Entities &enemy);
+    void Update(Entity &enemy);
     void Render() override;
 
 

@@ -8,17 +8,19 @@ class Map
         Map();
         virtual ~Map();
 
-        void LoadMap(int arr[20][25]);
+        void LoadMap(int arr[23][40]);
         void DrawMap();
+
+        int getBlockUnder(int p_x, int p_y);
 
     private:
         SDL_Rect src, dest;
 
-        SDL_Texture* dirt;
-        SDL_Texture* grass;
-        SDL_Texture* water;
+        SDL_Texture* cobble;
+        SDL_Texture* sand;
+        SDL_Texture* lava;
 
-        int MapTexture[20][25];
+        int MapTexture[23][40];
 };
 
 #endif // MAP_H

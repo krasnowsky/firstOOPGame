@@ -4,7 +4,7 @@
 
 #include "Sword.h"
 
-Sword::Sword(const char *fileName, int x, int y) : Items(fileName, x, y) {
+Sword::Sword(const char *fileName, int x, int y) : Item(fileName, x, y) {
     objTexture = TextureManager::LoadTexture(fileName);
     PositionX = x;
     PositionY = y;

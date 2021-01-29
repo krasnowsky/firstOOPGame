@@ -5,7 +5,10 @@
 #include <SDL_image.h>
 #include <iostream>
 #include <memory>
+#include <vector>
 
+class Entity;
+class Item;
 class Player;
 class Slime;
 class Snorlax;
@@ -38,7 +41,10 @@ class Game
         std::shared_ptr<Heal> potion;
         std::shared_ptr<Sword> sword;
         std::shared_ptr<Shield> shield;
-        std::shared_ptr<Map> Map1;
+        std::shared_ptr<Map> map;
+
+        std::vector<std::shared_ptr<Entity>> entities;
+        std::vector<std::shared_ptr<Item>> items;
 
         bool isRunning{};
 

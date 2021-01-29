@@ -18,17 +18,17 @@ include_directories(${SDL2IMG_INCLUDE_DIR})
 link_directories(${SDL2IMG_LIB_DIR})
 
 add_executable(game
-        include/Entities.h
+        include/Entity.h
         include/Game.h
         include/Map.h
         include/Player.h
         include/TextureManager.h
-        src/Entities.cpp
+        src/Entity.cpp
         src/Game.cpp
         src/Map.cpp
         src/Player.cpp
         src/TextureManager.cpp
-        main.cpp include/Slime.h src/Slime.cpp include/Snorlax.h src/Snorlax.cpp include/Items.h src/Items.cpp include/Heal.h src/Heal.cpp src/Sword.cpp include/Sword.h include/Shield.h src/Shield.cpp)
+        main.cpp include/Slime.h src/Slime.cpp include/Snorlax.h src/Snorlax.cpp include/Item.h src/Item.cpp include/Heal.h src/Heal.cpp src/Sword.cpp include/Sword.h include/Shield.h src/Shield.cpp)
 
 target_link_libraries(${PROJECT_NAME} -lmingw32 -lSDL2main -lSDL2 -lSDL2_image)
 

@@ -11,7 +11,7 @@ int main(int argv, char** args)
     int frameTime;
 
     game = std::make_shared<Game>();
-    game -> init("Beat The Dragon v1.0", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 800, 640, false);
+    game -> init("Beat The Dragon v1.0", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 1280, 736, false);
 
     while(game -> running())
     {

@@ -1,12 +1,12 @@
 #include <Snorlax.h>
 
-Snorlax::Snorlax(const char *fileName, int x, int y) : Entities(fileName, x, y) {
+Snorlax::Snorlax(const char *fileName, int x, int y) : Entity(fileName, x, y) {
     objTexture = TextureManager::LoadTexture(fileName);
     xPos = x;
     yPos = y;
 }
 
-void Snorlax::Update(Entities &enemy) {
+void Snorlax::Update(Entity &enemy) {
     srcRect.h = 32;
     srcRect.w = 32;
     srcRect.x = 0;

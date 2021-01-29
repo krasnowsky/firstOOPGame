@@ -3,17 +3,18 @@
 
 #include <string>
 #include <iostream>
-#include "Entities.h"
+#include "Entity.h"
 
-class Player : public Entities
+class Player : public Entity
 {
     private:
         int speed = 3;
+        int xTravelled, yTravelled;
 
     public:
         Player(const char* fileName, int x, int y);
         ~Player() override;
-        void Update(Entities &slime, Entities &snorlax);
+        void Update(Entity &slime, Entity &snorlax, Map &map);
         void Render() override;
         bool checkAlive() override;
 };

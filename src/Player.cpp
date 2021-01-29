@@ -1,9 +1,8 @@
-#include "Game.h"
 #include "TextureManager.h"
-#include "Entities.h"
 #include "Player.h"
+#include "Map.h"
 
-Player::Player(const char* fileName, int x, int y) : Entities(fileName, x, y)
+Player::Player(const char* fileName, int x, int y) : Entity(fileName, x, y)
 {
     objTexture = TextureManager::LoadTexture(fileName);
     xPos = x;
@@ -14,8 +13,16 @@ Player::~Player()
 {
 }
 
-void Player::Update(Entities &slime, Entities &snorlax)
+void Player::Update(Entity &slime, Entity &snorlax, Map &map)
 {
+    int playerPosX = this -> getPositionX();
+    int playerPosY = this -> getPositionY();
+
+    xTravelled = playerPosX / 32;
+    yTravelled = playerPosY / 32;
+
+    int blockUnder = map.getBlockUnder(yTravelled+2, xTravelled+2);
+
     if(Game::event.type == SDL_KEYDOWN)
     {
         switch(Game::event.key.keysym.sym)
@@ -24,7 +31,10 @@ void Player::Update(Entities &slime, Entities &snorlax)
             {
                 if(yPos > 0)
                 {
-                    this -> yPos -= speed;
+                    if(blockUnder != 0)
+                        this -> yPos -= speed;
+                    else
+                        this -> yPos += 32;
                 }
 
                 break;
@@ -34,7 +44,10 @@ void Player::Update(Entities &slime, Entities &snorlax)
             {
                 if(xPos > 0)
                 {
-                    this -> xPos -= speed;
+                    if(blockUnder != 0)
+                        this -> xPos -= speed;
+                    else
+                        this -> xPos += 32;
                 }
 
                 break;
@@ -44,7 +57,10 @@ void Player::Update(Entities &slime, Entities &snorlax)
             {
                 if(yPos < 574)
                 {
-                    this -> yPos += speed;
+                    if(blockUnder != 0)
+                        this -> yPos += speed;
+                    else
+                        this -> yPos -= 32;
                 }
 
                 break;
@@ -54,7 +70,10 @@ void Player::Update(Entities &slime, Entities &snorlax)
             {
                 if(xPos < 740)
                 {
-                    this -> xPos += speed;
+                    if(blockUnder != 0)
+                        this -> xPos += speed;
+                    else
+                        this -> xPos -= 32;
                 }
                 break;
             }
@@ -76,13 +95,11 @@ void Player::Update(Entities &slime, Entities &snorlax)
     destRect.w = srcRect.w * 2;
     destRect.h = srcRect.h * 2;
 
-    int playerPosX = this -> getPositionX();
-    int playerPosY = this -> getPositionY();
-
     int slimePosX = slime.getPositionX();
+    int slimePosY = slime.getPositionY();
 
     int snorlaxPosX = snorlax.getPositionX();
-    int snorlaxPosY= snorlax.getPositionY();
+    int snorlaxPosY = snorlax.getPositionY();
 
     if(abs(playerPosX - slimePosX) < 17 && slime.checkAlive())
     {
@@ -110,7 +127,11 @@ void Player::Update(Entities &slime, Entities &snorlax)
             std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << snorlax.getName() << " with " << snorlax.getHP() << " HP" << std::endl;
     }
 
-    //std::cout << "x: " << playerPosX << " y: " << playerPosY << std::endl;
+    std::cout << "x: " << playerPosX << " y: " << playerPosY << std::endl;
+
+
+
+    std::cout << "xT: " << xTravelled << " yT: " << yTravelled << std::endl;
 
     if(!slime.checkAlive() && !snorlax.checkAlive())
     {

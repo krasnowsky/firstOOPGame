@@ -1,9 +1,9 @@
 #ifndef GAME_SHIELD_H
 #define GAME_SHIELD_H
 
-#include "Items.h"
+#include "Item.h"
 
-class Shield : public Items
+class Shield : public Item
 {
 private:
     bool isTaken = false;

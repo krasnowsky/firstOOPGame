@@ -1,12 +1,12 @@
 #include <Slime.h>
 
-Slime::Slime(const char *fileName, int x, int y) : Entities(fileName, x, y) {
+Slime::Slime(const char *fileName, int x, int y) : Entity(fileName, x, y) {
     objTexture = TextureManager::LoadTexture(fileName);
     xPos = x;
     yPos = y;
 }
 
-void Slime::Update(Entities &enemy) {
+void Slime::Update(Entity &enemy) {
     srcRect.h = 32;
     srcRect.w = 32;
     srcRect.x = 0;

@@ -1,3 +1,4 @@
+#include "Entity.h"
 #include <Slime.h>
 #include <Snorlax.h>
 #include <Heal.h>
@@ -8,8 +9,10 @@
 #include "Map.h"
 #include <memory>
 
+
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
+
 
 Game::Game()
 {
@@ -53,24 +56,32 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
     player = std::make_shared<Player>("../assets/teemo.png", 0, 0);
     player -> setName("Super Hero");
-    player -> setStats(120, 10, 2000);
+    player -> setStats(25, 0, 2000);
     player -> getStats();
 
     slime = std::make_shared<Slime>("../assets/angryslime.png", 289,-50);
     slime -> setName("Maria Slime");
-    slime -> setStats(20, 5, 200);
+    slime -> setStats(10, 5, 400);
     slime -> getStats();
 
     snorlax = std::make_shared<Snorlax>("../assets/snorlax.png", 660, 300);
     snorlax -> setName("Sleepy Bear");
-    snorlax -> setStats(15, 20, 400);
+    snorlax -> setStats(15, 20, 700);
     snorlax -> getStats();
+
+    entities.push_back(player);
+    entities.push_back(slime);
+    entities.push_back(snorlax);
 
     potion = std::make_shared<Heal>("../assets/heal.png", 0, 300);
     sword = std::make_shared<Sword>("../assets/sword.png", 120, 250);
     shield = std::make_shared<Shield>("../assets/shield.png", 110, 150);
 
-    Map1 = std::make_shared<Map>();
+    items.push_back(potion);
+    items.push_back(sword);
+    items.push_back(shield);
+
+    map = std::make_shared<Map>();
 }
 
 void Game::handleEvents()
@@ -94,7 +105,7 @@ void Game::handleEvents()
 
 void Game::update()
 {
-    player -> Update(*slime, *snorlax);
+    player -> Update(*slime, *snorlax, *map);
     slime -> Update(*player);
     snorlax -> Update(*player);
     potion -> UpdateItem(*player);
@@ -105,7 +116,7 @@ void Game::update()
 void Game::render()
 {
     SDL_RenderClear(renderer);
-    Map1 -> DrawMap();
+    map -> DrawMap();
     slime -> Render();
     snorlax -> Render();
     potion -> RenderItem();

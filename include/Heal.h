@@ -1,9 +1,9 @@
 #ifndef GAME_HEAL_H
 #define GAME_HEAL_H
 
-#include "Items.h"
+#include "Item.h"
 
-class Heal : public Items
+class Heal : public Item
 {
 private:
     bool isTaken = false;

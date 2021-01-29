@@ -1,70 +1,71 @@
 #include "Game.h"
 #include "TextureManager.h"
-#include "Entities.h"
+#include "Entity.h"
 #include "Player.h"
 
-Entities::Entities(const char* fileName, int x, int y)
+Entity::Entity(const char* fileName, int x, int y)
 {
     objTexture = TextureManager::LoadTexture(fileName);
     xPos = x;
     yPos = y;
 }
 
-Entities::~Entities()
+Entity::~Entity()
 {
 }
 
-void Entities::Update()
+void Entity::Update()
+{
+
+}
+
+void Entity::Render()
 {
 }
 
-void Entities::Render()
-{
-}
-
-int Entities::getPositionX()
+int Entity::getPositionX()
 {
     return this -> xPos;
 }
 
-int Entities::getPositionY()
+int Entity::getPositionY()
 {
     return this -> yPos;
 }
 
-void Entities::setStats(int ad, int def, int hp)
+void Entity::setStats(int ad, int def, int hp)
 {
     this -> AD = ad;
     this -> DEF = def;
     this -> HP = hp;
 }
 
-int Entities::getAD()
+int Entity::getAD()
 {
     return this -> AD;
 }
 
-int Entities::getDEF()
+int Entity::getDEF()
 {
     return this -> DEF;
 }
 
-int Entities::getHP()
+int Entity::getHP()
 {
     return this -> HP;
 }
 
-void Entities::setName(std::string nick)
+void Entity::setName(std::string nick)
 {
     this -> name = nick;
 }
 
-std::string Entities::getName()
+std::string Entity::getName()
 {
     return this -> name;
 }
 
-void Entities::getStats()
+void Entity::getStats()
 {
     std::cout << "--------------------------------------" << std::endl;
     std::cout << "| " << this -> getName() << "'s stats:" << std::endl;
@@ -75,20 +76,20 @@ void Entities::getStats()
     std::cout << "--------------------------------------" << std::endl << std::endl;
 }
 
-void Entities::setHP(int hp)
+void Entity::setHP(int hp)
 {
     this -> HP = hp;
 }
 
-bool Entities::checkAlive()
+bool Entity::checkAlive()
 {
     return isAlive;
 }
 
-void Entities::setAD(int value) {
+void Entity::setAD(int value) {
     this -> AD = value;
 }
 
-void Entities::setDEF(int value) {
+void Entity::setDEF(int value) {
     this -> DEF = value;
 }

@@ -7,7 +7,7 @@
 #include "TextureManager.h"
 #include <vector>
 
-class Entities
+class Entity
 {
     protected:
         std::string name;
@@ -25,8 +25,8 @@ class Entities
         SDL_Rect srcRect, destRect;
 
     public:
-        Entities(const char* fileName, int x, int y);
-        virtual ~Entities();
+        Entity(const char* fileName, int x, int y);
+        virtual ~Entity();
 
 
         virtual int getPositionX();

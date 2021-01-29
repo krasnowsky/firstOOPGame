@@ -1,9 +1,9 @@
 #ifndef GAME_SNORLAX_H
 #define GAME_SNORLAX_H
 
-#include "Entities.h"
+#include "Entity.h"
 
-class Snorlax : public Entities
+class Snorlax : public Entity
 {
 private:
     int speed = 2;
@@ -11,7 +11,7 @@ private:
     bool isUp = true, isAttacked = false;
 public:
     Snorlax(const char* fileName, int x, int y);
-    void Update(Entities &enemy);
+    void Update(Entity &enemy);
     void Render() override;
 };
 

@@ -1,6 +1,6 @@
 #include "Heal.h"
 
-Heal::Heal(const char *fileName, int x, int y) : Items(fileName, x, y) {
+Heal::Heal(const char *fileName, int x, int y) : Item(fileName, x, y) {
     objTexture = TextureManager::LoadTexture(fileName);
     PositionX = x;
     PositionY = y;
