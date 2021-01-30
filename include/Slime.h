@@ -11,7 +11,7 @@ private:
     bool isRight = true, isAttacked = false;
 public:
     Slime(const char* fileName, int x, int y);
-    void Update(Entity &enemy);
+    void Update(std::vector<std::shared_ptr<Entity>> entities);
     void Render() override;
 
 

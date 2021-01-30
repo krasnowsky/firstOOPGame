@@ -13,7 +13,7 @@ Player::~Player()
 {
 }
 
-void Player::Update(Entity &slime, Entity &snorlax, Map &map, Entity &dragon)
+void Player::Update(std::vector<std::shared_ptr<Entity>> entities, Map &map)
 {
     int playerPosX = this -> getPositionX();
     int playerPosY = this -> getPositionY();
@@ -95,55 +95,55 @@ void Player::Update(Entity &slime, Entity &snorlax, Map &map, Entity &dragon)
     destRect.w = srcRect.w * 2;
     destRect.h = srcRect.h * 2;
 
-    int slimePosX = slime.getPositionX();
-    int slimePosY = slime.getPositionY();
+    int slimePosX = entities[1] -> getPositionX();
+    int slimePosY = entities[1] -> getPositionY();
 
-    int snorlaxPosX = snorlax.getPositionX();
-    int snorlaxPosY = snorlax.getPositionY();
+    int snorlaxPosX = entities[2] -> getPositionX();
+    int snorlaxPosY = entities[2] -> getPositionY();
 
-    int dragonPosX = dragon.getPositionX();
-    int dragonPosY = dragon.getPositionY();
+    int dragonPosX = entities[3] -> getPositionX();
+    int dragonPosY = entities[3] -> getPositionY();
 
-    if(abs(playerPosX - slimePosX) < 17 && slime.checkAlive())
+    if(abs(playerPosX - slimePosX) < 17 && entities[1] -> checkAlive())
     {
             int dmgAD = this -> getAD();
-            int enemyHP = slime.getHP();
+            int enemyHP = entities[1] -> getHP();
             int dmgADDealt;
 
-            if(dmgAD == 0 || dmgAD <= slime.getDEF()) dmgADDealt = 0;
-            else  dmgADDealt = dmgAD - slime.getDEF();
+            if(dmgAD == 0 || dmgAD <= entities[1] -> getDEF()) dmgADDealt = 0;
+            else  dmgADDealt = dmgAD - entities[1] -> getDEF();
 
-            slime.setHP(enemyHP-dmgADDealt);
-            std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << slime.getName() << " with " << slime.getHP() << " HP" << std::endl;
+            entities[1] -> setHP(enemyHP-dmgADDealt);
+            std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << entities[1] -> getName() << " with " << entities[1] -> getHP() << " HP" << std::endl;
     }
 
-    if(abs(playerPosX - snorlaxPosX) < 50 && abs(playerPosY - snorlaxPosY) < 50 && snorlax.checkAlive())
+    if(abs(playerPosX - snorlaxPosX) < 50 && abs(playerPosY - snorlaxPosY) < 50 && entities[2] -> checkAlive())
     {
             int dmgAD = this -> getAD();
-            int enemyHP = snorlax.getHP();
+            int enemyHP = entities[2] -> getHP();
             int dmgADDealt;
 
-            if(dmgAD == 0 || dmgAD <= snorlax.getDEF()) dmgADDealt = 0;
-            else  dmgADDealt = dmgAD - snorlax.getDEF();
+            if(dmgAD == 0 || dmgAD <= entities[2] -> getDEF()) dmgADDealt = 0;
+            else  dmgADDealt = dmgAD - entities[2] -> getDEF();
 
-            snorlax.setHP(enemyHP-dmgADDealt);
-            std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << snorlax.getName() << " with " << snorlax.getHP() << " HP" << std::endl;
+            entities[2] -> setHP(enemyHP-dmgADDealt);
+            std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << entities[2] -> getName() << " with " << entities[2] -> getHP() << " HP" << std::endl;
     }
 
-    if(abs(playerPosX - dragonPosX) < 50 && abs(playerPosY - dragonPosY) < 50 && dragon.checkAlive())
+    if(abs(playerPosX - dragonPosX) < 50 && abs(playerPosY - dragonPosY) < 50 && entities[3] -> checkAlive())
     {
         int dmgAD = this -> getAD();
-        int enemyHP = dragon.getHP();
+        int enemyHP = entities[3] -> getHP();
         int dmgADDealt;
 
-        if(dmgAD == 0 || dmgAD <= dragon.getDEF()) dmgADDealt = 0;
-        else  dmgADDealt = dmgAD - dragon.getDEF();
+        if(dmgAD == 0 || dmgAD <= entities[3] -> getDEF()) dmgADDealt = 0;
+        else  dmgADDealt = dmgAD - entities[3] -> getDEF();
 
-        dragon.setHP(enemyHP-dmgADDealt);
-        std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << dragon.getName() << " with " << dragon.getHP() << " HP" << std::endl;
+        entities[3] -> setHP(enemyHP-dmgADDealt);
+        std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << entities[3] -> getName() << " with " << entities[3] -> getHP() << " HP" << std::endl;
     }
 
-    if(!slime.checkAlive() && !snorlax.checkAlive() && !dragon.checkAlive())
+    if(!entities[1] -> checkAlive() && !entities[2] -> checkAlive() && !entities[3] -> checkAlive())
     {
         objTexture = TextureManager::LoadTexture("../assets/teemoVICTORY.png");
         destRect.w = srcRect.w * 20;

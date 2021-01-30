@@ -7,7 +7,7 @@ Dragon::Dragon(const char *fileName, int x, int y) : Entity(fileName, x, y)
     yPos = y;
 }
 
-void Dragon::Update(Entity &enemy)
+void Dragon::Update(std::vector<std::shared_ptr<Entity>> entities)
 {
     srcRect.h = 704;
     srcRect.w = 778;
@@ -26,23 +26,23 @@ void Dragon::Update(Entity &enemy)
     destRect.h = srcRect.h / 6;
 
     int dragonPosY = this -> getPositionY();
-    int playerPosY = enemy.getPositionY();
+    int playerPosY = entities[0] -> getPositionY();
     int dragonPosX = this -> getPositionX();
-    int playerPosX = enemy.getPositionX();
+    int playerPosX = entities[0] -> getPositionX();
 
     if(abs(dragonPosX - playerPosX) < 50 && abs(dragonPosY - playerPosY) < 50 && isAlive)
     {
-        if (enemy.checkAlive())
+        if (entities[0] -> checkAlive())
         {
             int dmgAD = this -> getAD();
-            int enemyHP = enemy.getHP();
+            int enemyHP = entities[0] -> getHP();
             int dmgADDealt;
 
-            if(dmgAD == 0 || dmgAD <= enemy.getDEF()) dmgADDealt = 0;
-            else  dmgADDealt = dmgAD - enemy.getDEF();
+            if(dmgAD == 0 || dmgAD <= entities[0] -> getDEF()) dmgADDealt = 0;
+            else  dmgADDealt = dmgAD - entities[0] -> getDEF();
 
-            enemy.setHP(enemyHP-dmgADDealt);
-            std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << enemy.getName() << " with " << enemy.getHP() << " HP" << std::endl;
+            entities[0] -> setHP(enemyHP-dmgADDealt);
+            std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << entities[0] -> getName() << " with " << entities[0] -> getHP() << " HP" << std::endl;
         }
     }
 }

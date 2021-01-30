@@ -14,7 +14,7 @@ class Player : public Entity
     public:
         Player(const char* fileName, int x, int y);
         ~Player() override;
-        void Update(Entity &slime, Entity &snorlax, Map &map, Entity &dragon);
+        void Update(std::vector<std::shared_ptr<Entity>> entities, Map &map);
         void Render() override;
         bool checkAlive() override;
 };

@@ -113,10 +113,10 @@ void Game::handleEvents()
 
 void Game::update()
 {
-    player -> Update(*slime, *snorlax, *map, *dragon);
-    slime -> Update(*player);
-    snorlax -> Update(*player);
-    dragon -> Update(*player);
+    player -> Update(entities, *map);
+    slime -> Update(entities);
+    snorlax -> Update(entities);
+    dragon -> Update(entities);
     potion -> UpdateItem(*player);
     sword -> UpdateItem(*player);
     shield -> UpdateItem(*player);
@@ -126,13 +126,11 @@ void Game::render()
 {
     SDL_RenderClear(renderer);
     map -> DrawMap();
-    slime -> Render();
-    snorlax -> Render();
-    dragon -> Render();
-    potion -> RenderItem();
-    sword -> RenderItem();
-    shield -> RenderItem();
-    player -> Render();
+    for(int i = 0; i<4;i++)
+    {
+        entities[i]-> Render();
+        if(i<=2) items[i] -> RenderItem();
+    }
     SDL_RenderPresent(renderer);
 }
 

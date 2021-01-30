@@ -6,7 +6,7 @@ Slime::Slime(const char *fileName, int x, int y) : Entity(fileName, x, y) {
     yPos = y;
 }
 
-void Slime::Update(Entity &enemy) {
+void Slime::Update(std::vector<std::shared_ptr<Entity>> entities) {
     srcRect.h = 32;
     srcRect.w = 32;
     srcRect.x = 0;
@@ -45,22 +45,22 @@ void Slime::Update(Entity &enemy) {
     }
 
     int slimePos = this -> getPositionX();
-    int playerPos = enemy.getPositionX();
+    int playerPos = entities[0] -> getPositionX();
 
     if(abs(slimePos - playerPos) < 17 && isAlive)
     {
         isAttacked = true;
-        if (enemy.checkAlive())
+        if (entities[0] -> checkAlive())
         {
             int dmgAD = this -> getAD();
-            int enemyHP = enemy.getHP();
+            int enemyHP = entities[0] -> getHP();
             int dmgADDealt;
 
-            if(dmgAD == 0 || dmgAD <= enemy.getDEF()) dmgADDealt = 0;
-            else  dmgADDealt = dmgAD - enemy.getDEF();
+            if(dmgAD == 0 || dmgAD <= entities[0] -> getDEF()) dmgADDealt = 0;
+            else  dmgADDealt = dmgAD - entities[0] -> getDEF();
 
-            enemy.setHP(enemyHP-dmgADDealt);
-            std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << enemy.getName() << " with " << enemy.getHP() << " HP" << std::endl;
+            entities[0] -> setHP(enemyHP-dmgADDealt);
+            std::cout << this -> name << " dealt " << dmgADDealt << " DMG leaving " << entities[0] -> getName() << " with " << entities[0] -> getHP() << " HP" << std::endl;
         }
     }
 }
